@@ -27,7 +27,7 @@ const DoctorAppointment = () => {
     date: '',
     time: '',
   };
-
+  const [res, setres] = useState(true);
   const [formData, setFormData] = useState(initialFormState);
 
   const handleChange = (e) => {
@@ -68,6 +68,10 @@ const DoctorAppointment = () => {
   };
 
   return (
+    <>
+    {
+      auth?.currentUser?.email ===undefined ? (<Auth setres={setres}/>):
+      (
     <div
       style={{
         display: 'flex',
@@ -165,7 +169,9 @@ const DoctorAppointment = () => {
         </button>
       </form>
     </div>
-  );
+  )}
+  </>
+  )
 };
 
 export default DoctorAppointment;

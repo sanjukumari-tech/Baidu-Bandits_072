@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import {getAuth} from 'firebase/auth'
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, updateDoc } from "firebase/firestore";
 
 import { doc, setDoc } from "firebase/firestore"; 
 
@@ -30,3 +30,10 @@ await setDoc(doc(db, "user","userId" ), {
 calories:[23,45,68,4,7,343,756,345,45,45,45,45,445,636,]
 
 });
+
+
+await updateDoc(doc(db, "user","userId" ), {
+
+  calori:[23,45,68,4,7,343]
+  
+  });

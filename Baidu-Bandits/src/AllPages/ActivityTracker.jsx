@@ -24,6 +24,8 @@ import ExerciseRecommendation from './ExerciseRecommendation';
 
 import { motion } from 'framer-motion';
 import DynamicForm from '../Components/DynamicForm';
+import { Auth } from '../Components/Auth';
+import { auth } from '../auth/firebase';
 
 
 // import './animations.css';  // Import the CSS animations
@@ -51,6 +53,7 @@ const activities = [
 
 const ActivityTracker = () => {
   const [showActivities, setShowActivities] = useState(false);
+  const [res, setres] = useState(true);
 
 
 
@@ -106,6 +109,10 @@ const ActivityTracker = () => {
   };
   /////////
   return (
+    <>
+      {
+        auth?.currentUser?.email ===undefined ? (<Auth setres={setres}/>):
+        (
     <Box p={5} height="100vh" overflow="auto">
       {!showActivities ? (
         <>
@@ -198,6 +205,8 @@ const ActivityTracker = () => {
       )}
     </Box>     
     </Box>
+  )}
+  </>
   );
 };
 

@@ -1,11 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Auth } from '../Components/Auth';
-import {auth} from "../auth/firebase"
+import {auth, db} from "../auth/firebase"
 import { ChakraProvider, Box, Heading, Text, Image, Button, Grid, GridItem } from '@chakra-ui/react';
+import { doc, getDoc } from 'firebase/firestore';
 
 const Dashboard = () => {
+  const [res, setres] = useState(true);
+  const [data, setData] = useState();
+
+  const user = auth?.currentUser?.email
+  console.log(user);
+  const dataRef = doc(db,"user",user)
+
+  console.log(data);
+  useEffect(async() => {
+    const temp=await getDoc(dataRef)
+    setData(temp) 
+    
+  }, []);
+
+
+
   return (
+  
   <>
+      {
+        auth?.currentUser?.email ===undefined ? (<Auth setres={setres}/>):
+        (
     <ChakraProvider>
       {/* main box */}
     <Box maxHeight="100vh" overflow="hidden">
@@ -132,7 +153,7 @@ const Dashboard = () => {
       </Box>
       </Box>
     </ChakraProvider>
-  
+  )}
   </>
   );
 };
