@@ -9,29 +9,21 @@ import gym from '../assets/gym-svgrepo-com.svg';
 import logout from '../assets/logout-svgrepo-com.svg';
 import { auth } from '../auth/firebase';
 import { signOut } from 'firebase/auth';
-import { Alert, AlertIcon } from '@chakra-ui/react';
 import home from '../assets/home-1-svgrepo-com.svg';
+
 const Navbar = () => {
   const location = useLocation();
-  const signOff = async()=>{
+  const signOff = async () => {
     try {
-        
-        await signOut(auth)
-        
-    }
-     catch (error) {
-        console.error(error);
-    }
-    finally{
-      
+      await signOut(auth);
+    } catch (error) {
+      console.error(error);
+    } finally {
       setTimeout(() => {
         window.location.reload();
-        
       }, 1000);
-      
     }
-  }
-  
+  };
 
   const getLinkStyle = (path) => ({
     display: 'flex',
@@ -62,6 +54,7 @@ const Navbar = () => {
           fontFamily: 'sans-serif',
           gap: '25px',
           fontSize: '20px',
+          margin: '5px',
         }}
       >
         <h1>Logo</h1>

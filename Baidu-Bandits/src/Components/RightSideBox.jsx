@@ -3,6 +3,7 @@ import { Avatar, Checkbox, Button } from '@chakra-ui/react';
 import loc from '../assets/location-pin-svgrepo-com.svg';
 import bell from '../assets/bell-svgrepo-com.svg';
 import sett from '../assets/setting-2-svgrepo-com.svg';
+import { useToast } from '@chakra-ui/react';
 
 const RightSideBox = () => {
   const [appointments, setAppointments] = useState([]);
@@ -12,6 +13,7 @@ const RightSideBox = () => {
     false,
     false,
   ]);
+  const toast = useToast();
 
   const dailyTasks = [
     'Drink 4 litres of water',
@@ -68,6 +70,13 @@ const RightSideBox = () => {
     updatedAppointments.splice(index, 1);
     setAppointments(updatedAppointments);
     localStorage.setItem('appData', JSON.stringify(updatedAppointments));
+    toast({
+      title: 'Appointment Canceled',
+      description: 'Your appointment has been canceled.',
+      status: 'error',
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   const removeExpiredAppointments = (storedAppointments) => {
@@ -157,7 +166,7 @@ const RightSideBox = () => {
         </div>
         <div>
           <p>
-            <span style={{ fontSize: '25px', fontWeight: '600' }}>5.7</span>{' '}
+            <span style={{ fontSize: '25px', fontWeight: '600' }}>5.7</span>
           </p>
           <p style={{ color: '#adb3bc' }}>Height</p>
         </div>
