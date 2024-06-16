@@ -1,17 +1,23 @@
+// src/redux/reducer.js
 import { FETCH, UPDATE } from "./actionTypes";
 
-export const reducer =(state,action)=>{
-    switch (action.type) {
-        case FETCH:
-            return action.payload
-        case UPDATE:
-            return {
-                ...state,
-                payload
-            }
+const initialState = {
+  weeklyData: {}
+};
 
-        default:
-            return state
-    }
-
-}
+export const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH:
+      return {
+        ...state,
+        weeklyData: action.payload
+      };
+    case UPDATE:
+      return {
+        ...state,
+        weeklyData: action.payload
+      };
+    default:
+      return state;
+  }
+};
