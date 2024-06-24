@@ -5,6 +5,7 @@ import { auth } from '../auth/firebase';
 import '../styles/mentalWellness.css'
 import { Mood } from '../Components/Mood';
 import Messages from '../Components/DynamicMessages';
+import { ReadAbout } from '../Components/ReadAbout';
 
 export const MentalWellnessComp = () => {
     const [loading, setLoading] = useState(true);
@@ -28,6 +29,8 @@ export const MentalWellnessComp = () => {
         
         <Messages duration={5000} />
         <Mood/>
+        <ReadAbout/>
+        
 
         </div>
         </>        

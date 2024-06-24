@@ -64,20 +64,23 @@ export const SignIn = ({ setres }) => {
   
 
 
-if(del){
-  deleteDoc(doc(db,"user",auth?.currentUser?.email)).then(deleteUser(auth.currentUser)).then(() => {
-  toast({
-    title: "Error",
-    description: "This account is already DELETED",
-    status: "error",
-    duration: 5000,
-    isClosable: true,
-  });
-}).catch((error) => {
-  console.log(error)
-});
-}
 
+ 
+
+function handleDelete(){
+  deleteDoc(doc(db,"user",auth?.currentUser?.email)).then(deleteUser(auth.currentUser)).then(() => {
+    toast({
+      title: "Error",
+      description: "This account is already DELETED",
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+    });
+  }).catch((error) => {
+    console.log(error)
+  });
+  
+}
 
 
 
@@ -120,6 +123,19 @@ if(del){
       fetchData(dispatch)
     }
   };
+  // if(del){
+  //   const user = auth.currentUser;
+  //   deleteUser(user).then(() => {
+  //     toast({
+  //       title: "Error",
+  //       description: "This acoount is already deleted",
+  //       status: "error",
+  //       duration: 5000,
+  //       isClosable: true,
+  //     });
+  //   })
+  // }
+
 
   // const signOff = async () => {
   //   try {
@@ -136,11 +152,21 @@ if(del){
   const formBg = useColorModeValue("white", "gray.700");
   const gradientBg = "linear(to-r, teal.500, green.500)";
 
+
+
+  if(auth?.currentUser?.email && !del){
+    return admin ? (<Navigate replace to={"/admindashboard"}/>):(<Navigate replace to={"/dashboard"}/>)
+  } else if(auth?.currentUser?.email && !del){
+    handleDelete()
+
+  }
+
   return (
   <>
-    {
-      auth?.currentUser?.email && (admin ? (<Navigate replace to={"/admindashboard"}/>):(<Navigate replace to={"/dashboard"}/>))
-    }
+
+    {/* {
+      (auth?.currentUser?.email && !del) ? (admin ? (<Navigate replace to={"/admindashboard"}/>):(<Navigate replace to={"/dashboard"}/>)):(()=>handleDelete())
+    } */}
     <Flex height='100vh' width='100%' justify='center' alignItems='center' bg={gradientBg}>
       <Box
         borderWidth='1px'

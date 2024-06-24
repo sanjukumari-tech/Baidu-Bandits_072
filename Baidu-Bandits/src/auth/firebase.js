@@ -1,5 +1,5 @@
+import { getAuth, deleteUser } from "firebase/auth";
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
 import { doc, getDoc, getFirestore, updateDoc } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { FETCH } from '../redux/actionTypes';
@@ -18,12 +18,19 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
+
+
+
+
+
+
+
 export function fetchData(dispatch) {
   getDoc(doc(db, 'user', auth?.currentUser?.email))
     .then((res) => res.data())
-    .then((resp) =>{ console.log(resp);
-       dispatch({ type: FETCH, payload: resp })
-    })
+    .then((resp) =>{
+      
+       dispatch({ type: FETCH, payload: resp })})
     .catch((err) => console.log(err));
 }
 
