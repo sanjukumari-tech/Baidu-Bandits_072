@@ -1,5 +1,5 @@
 
-# Baidu-Bandits_072 (Befit)
+# Befit (Baidu-Bandits_072 )
 
 The Health and Wellness Project is a comprehensive application designed to promote a healthier lifestyle by integrating physical activity tracking, medical appointments, mental health support, and exercise scheduling. This project aims to provide users with a holistic approach to their health and wellness, leveraging modern technology to facilitate healthier habits and improved well-being.
 
